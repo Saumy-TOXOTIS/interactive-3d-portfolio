@@ -1,0 +1,16 @@
+/* Ensure the R3F canvas fills the viewport and the app controls the scroll */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+/* Let ScrollControls manage scrolling; prevent window scroll */
+body {
+  overflow: hidden;
+}
+
+/* Avoid default canvas sizing quirks */
+canvas {
+  display: block;
+}
+

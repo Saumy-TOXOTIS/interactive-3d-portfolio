@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive 3D Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+        cursor: none; /* Hide default cursor */
+      }
+      /* Custom scrollbar for a more modern look */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #111827; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #4f46e5;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #6366f1;
+      }
+
+      /* Custom Cursor */
+      .cursor-dot, .cursor-outline {
+        pointer-events: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #6366f1;
+      }
+      .cursor-outline {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(99, 102, 241, 0.2);
+        transition: all 0.15s ease-out; /* Adjusted for smoother follow */
+      }
+      .cursor-hidden {
+        opacity: 0;
+      }
+      .cursor-link-hover .cursor-dot {
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+      .cursor-link-hover .cursor-outline {
+        transform: translate(-50%, -50%) scale(1.5);
+        background-color: rgba(99, 102, 241, 0.3);
+      }
+      
+      /* Card Hover Glow Effect */
+      .project-card-glow, .skill-badge-glow {
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card-glow:before, .skill-badge-glow:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit; /* Use parent's border-radius */
+        border: 1px solid transparent;
+        background: linear-gradient(45deg, #4f46e5, #818cf8) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      .project-card-glow:hover:before, .skill-badge-glow:hover:before {
+        opacity: 1;
+      }
+
+      /* Advanced 3D Hover Effect for Cards */
+      .project-card-container {
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease-out;
+      }
+      .project-card-container:hover {
+        transform: perspective(1000px) rotateX(7deg) rotateY(-5deg) scale(1.05);
+        box-shadow: 0px 35px 50px -20px rgba(79, 70, 229, 0.25);
+      }
+
+      /* Animation Utilities */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeInUp {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      /* Form Input Styles */
+      .form-input {
+        width: 100%;
+        background-color: rgba(31, 41, 55, 0.5); /* bg-gray-700/50 */
+        border: 1px solid rgba(55, 65, 81, 1); /* border-gray-600 */
+        color: #f3f4f6; /* text-gray-100 */
+        border-radius: 0.5rem; /* rounded-lg */
+        padding: 0.75rem 1rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: #6366f1; /* indigo-500 */
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
+      }
+      .form-input::placeholder {
+        color: #6b7280; /* text-gray-500 */
+      }
+
+      /* Neon Theme */
+      :root{
+        --bg1: #0b1220;
+        --bg2: #0f172a;
+        --accent: #6366f1;
+        --accent-2: #22d3ee;
+      }
+      body.theme-neon{
+        --bg1: #050814;
+        --bg2: #0a1024;
+        --accent: #8b5cf6; /* violet */
+        --accent-2: #06b6d4; /* cyan */
+      }
+
+      /* Background gradient layers with mouse parallax */
+      body::before, body::after{
+        content:"";
+        position:fixed; inset:0; pointer-events:none; z-index:-2;
+      }
+      body::before{
+        background: radial-gradient(1200px 1200px at var(--mx,50%) var(--my,30%), color-mix(in oklab, var(--accent) 40%, transparent), transparent 60%),
+                    radial-gradient(1600px 800px at 50% -20%, color-mix(in oklab, var(--accent-2) 12%, transparent), transparent 70%),
+                    linear-gradient(180deg, var(--bg1), var(--bg2));
+        filter: saturate(1.1);
+      }
+      body::after{
+        background: radial-gradient(280px 280px at var(--mx,50%) var(--my,30%), color-mix(in oklab, var(--accent) 35%, transparent), transparent 60%);
+        opacity: .5;
+      }
+
+      /* R3F Drei Loader Customization */
+      .r3f-loader {
+        background-color: #111827 !important;
+        color: white !important;
+        font-family: 'Inter', sans-serif !important;
+      }
+      .r3f-loader-bar {
+        height: 8px !important;
+        background: #4f46e5 !important;
+        border-radius: 10px !important;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.552.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.6",
+    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
+    "maath/": "https://aistudiocdn.com/maath@^0.10.8/",
+    "three": "https://aistudiocdn.com/three@^0.181.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div id="root"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <script type="module" src="/index.jsx"></script>
+</body>
+</html>
