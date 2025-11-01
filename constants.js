@@ -3,48 +3,57 @@ export const NAV_LINKS = [
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact' }
+  { name: 'Contact', href: '#contact' },
 ];
+
 export const PROJECTS = [
   {
     title: 'Meteorite Classifier App',
     description:
-      'Full‑stack meteorite texture classifier. React + Vite frontend uploads images to a Flask API that serves a TensorFlow/Keras CNN (MeteorT) to estimate metal vs. silicate composition with visual preview.',
+      'Academic/internship project: a full-stack meteorite texture classifier. React + Vite frontend uploads images to a Flask API that serves a TensorFlow/Keras CNN (MeteorT) to estimate metal vs. silicate composition with a visual preview.',
     imageUrl: '/images/meteorite.svg',
     tags: ['React', 'Vite', 'Flask', 'Python', 'TensorFlow', 'Keras', 'Computer Vision', 'CNN'],
     liveUrl: '',
     sourceUrl: 'https://github.com/CyberXshaurya/meteorite-classifier-app',
   },
 ];
-export const SKILLS = ['React', 'TypeScript', 'JavaScript (ES6+)', 'Node.js', 'Next.js', 'Three.js', 'React Three Fiber', 'Tailwind CSS', 'GraphQL', 'REST APIs', 'Webpack', 'Vite', 'CI/CD', 'Jest', 'React Testing Library', 'Figma', 'UI/UX Design'];
+
+export const SKILLS = [
+  'HTML',
+  'CSS',
+  'JavaScript (ES6+)',
+  'React',
+  'Node.js',
+  'Express',
+  'Tailwind CSS',
+  'Vite',
+  'REST APIs',
+  'Git & GitHub',
+  'Python (Basics)',
+  'Machine Learning (Basics)',
+  'TensorFlow/Keras (Basics)',
+];
+
 export const TIMELINE = [
   {
-    role: 'Senior Frontend Engineer',
-    company: 'TechNova Labs',
-    period: '2022 — Present',
+    role: 'MTech Student',
+    company: 'IIT Roorkee',
+    period: '2024 — Present',
     highlights: [
-      'Led migration to micro‑frontends with Module Federation',
-      'Shipped 3D product configurator (R3F + Drei)',
-      'Improved Lighthouse performance from 72 → 96'
-    ]
+      'Learning and building in Web Development and ML',
+      'Exploring modern React + Node workflows',
+      'Working on academic and personal projects',
+    ],
   },
   {
-    role: 'Frontend Engineer',
-    company: 'PixelForge',
-    period: '2019 — 2022',
+    role: 'Web Development Journey',
+    company: 'Self-driven Learning',
+    period: '≈ 1 year',
     highlights: [
-      'Built design system adopted across 5 teams',
-      'Reduced bundle size by 35% via code‑splitting',
-      'Introduced automated visual regression testing'
-    ]
+      'HTML, CSS, JavaScript, React, Node.js',
+      'Vite + Tailwind for fast iteration',
+      'Intro to ML with TensorFlow/Keras',
+    ],
   },
-  {
-    role: 'UI Engineer',
-    company: 'Creatify Studio',
-    period: '2016 — 2019',
-    highlights: [
-      'Launched marketing microsites with rich motion',
-      'Mentored interns; ran weekly UI/UX workshops'
-    ]
-  }
 ];
+

@@ -11,33 +11,23 @@ const Header = () => {
   const headerRef = useRef(null);
   const scroll = useScroll();
     useEffect(() => {
-        const scrollContainer = scroll.el;
-        if (!scrollContainer) return; // guard until ScrollControls mounts
-        let lastScrollY = scrollContainer.scrollTop;
-    const handleScroll = () => {
-      const currentScrollY = scrollContainer.scrollTop;
-      if (headerRef.current) {
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          headerRef.current.classList.add('-translate-y-full');
-        } else {
-          headerRef.current.classList.remove('-translate-y-full');
+      const scrollContainer = scroll.el;
+      if (!scrollContainer) return; // guard until ScrollControls mounts
+      const handleScroll = () => {
+        // Only compute active section; keep header pinned (no hide-on-scroll)
+        const currentScrollY = scrollContainer.scrollTop;
+        const sections = ['#about', '#experience', '#projects', '#skills', '#contact'];
+        let current = '#about';
+        for (const id of sections) {
+          const el = document.querySelector(id);
+          if (!el) continue;
+          if (el.offsetTop - 120 <= currentScrollY) current = id;
         }
-      }
-      lastScrollY = currentScrollY;
-      // active link detection
-      const sections = ['#about','#experience','#projects','#skills','#contact'];
-      let current = '#about';
-      for (const id of sections) {
-        const el = document.querySelector(id);
-        if (!el) continue;
-        if (el.offsetTop - 120 <= currentScrollY) current = id;
-      }
-      setActive(current);
-    };
-        scrollContainer.addEventListener('scroll', handleScroll);
-        return () => {
-            scrollContainer.removeEventListener('scroll', handleScroll);
-        };
+        setActive(current);
+      };
+      handleScroll();
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
     }, [scroll]);
   const handleLinkClick = (e, href) => {
     e.preventDefault();
@@ -62,7 +52,7 @@ const Header = () => {
   }}>
             <div className="container mx-auto px-6 md:px-12 py-4 flex justify-between items-center bg-gray-900/30 backdrop-blur-lg border-b border-gray-500/10">
                 <a href="#" className="text-2xl font-black tracking-tighter text-white" onClick={handleLogoClick}>
-                    JD<span className="text-indigo-500">.</span>
+                    ST<span className="text-indigo-500">.</span>
                 </a>
 
                 {/* Desktop Navigation */}

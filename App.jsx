@@ -27,7 +27,7 @@ const App = () => {
       fov: 75
     }}>
                 <Suspense fallback={null}>
-                    <ScrollControls pages={6} damping={0.25}>
+                    <ScrollControls pages={7} damping={0.25}>
                         <Suspense fallback={null}>
                           <Experience onSelectSkill={setSelectedSkill} quality={lowQuality ? 'low' : 'high'} />
                         </Suspense>
@@ -43,7 +43,7 @@ const App = () => {
                                         <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed text-center animate-fadeInUp" style={{
                     animationDelay: '0.2s'
                   }}>
-                                            I'm a passionate Senior Frontend Engineer with a knack for creating beautiful, functional, and user-centric web applications. With over 8 years of experience, I specialize in the React ecosystem, TypeScript, and modern UI/UX design. I thrive on solving complex problems and turning innovative ideas into reality. This 3D portfolio is a small showcase of my love for combining code with creative design.
+                                            Hi, I'm Shaurya Tiwari — an MTech student at IIT Roorkee who loves building for the web. I work with HTML, CSS, JavaScript, React and Node.js, and I’m also exploring Machine Learning fundamentals. I have roughly one year of focused learning and project experience so far. This portfolio is my playground to keep learning, ship projects, and grow into a better developer.
                                         </p>
                                         <Stats />
                                     </Section>
@@ -85,17 +85,15 @@ const App = () => {
                                             <div className="flex justify-center gap-6 mt-12 animate-fadeInUp" style={{
                       animationDelay: '0.6s'
                     }}>
-                                                <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors"><Twitter size={28} /></a>
-                                                <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors"><Github size={28} /></a>
-                                                <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors"><Linkedin size={28} /></a>
-                                                <a href="mailto:contact@example.com" className="text-gray-400 hover:text-indigo-400 transition-colors"><Mail size={28} /></a>
+                                                <a href="https://github.com/CyberXshaurya" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-indigo-400 transition-colors"><Github size={28} /></a>
+                                                <a href="https://www.linkedin.com/in/shaurya-tiwari-b61510239" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-indigo-400 transition-colors"><Linkedin size={28} /></a>
                                             </div>
                                         </div>
                                     </Section>
                                 </main>
 
                                 <footer className="text-center py-8 mt-16 border-t border-gray-800/50">
-                                    <p className="text-gray-500">&copy; {new Date().getFullYear()} John Doe. All Rights Reserved.</p>
+                                    <p className="text-gray-500">&copy; {new Date().getFullYear()} Shaurya Tiwari. All Rights Reserved.</p>
                                 </footer>
                             </div>
                             {/* Context-bound UI */}

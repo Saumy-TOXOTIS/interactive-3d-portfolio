@@ -15,12 +15,12 @@ const Hero = () => {
   };
   return <section className="h-screen flex flex-col justify-center items-center text-center relative">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none animate-fadeInUp">
-                John Doe
+                Shaurya Tiwari
             </h1>
             <p className="mt-4 text-xl md:text-2xl lg:text-3xl font-medium text-indigo-400 tracking-wide animate-fadeInUp" style={{
       animationDelay: '0.2s'
     }}>
-                Senior Frontend React Engineer
+                MTech Student • IIT Roorkee · Web Developer · ML Enthusiast
             </p>
             <div className="absolute bottom-10 animate-bounce">
                 <a href="#about" aria-label="Scroll to about section" onClick={handleScrollDown}>

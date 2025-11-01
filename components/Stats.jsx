@@ -27,11 +27,10 @@ function Counter({ to, label, delay = 0 }) {
 export default function Stats() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
-      <Counter to={80} label="Projects" />
-      <Counter to={8} label="Years Experience" delay={150} />
-      <Counter to={24} label="Awards" delay={300} />
-      <Counter to={120} label="Happy Clients" delay={450} />
+      <Counter to={1} label="Projects" />
+      <Counter to={1} label="Years Learning" delay={150} />
+      <Counter to={0} label="Awards" delay={300} />
+      <Counter to={0} label="Clients" delay={450} />
     </div>
   );
 }
-
